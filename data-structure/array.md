@@ -65,3 +65,20 @@ let people = [Person]() // 사용자 정의 타입
 ![append](../img/ds/array/append.png)
 * Xcode에서 확인할 수 있듯이 일반적으로는 O(1)의 효율을 가지지만
 * 추가적인 공간을 필요로하는 경우 O(n)의 효율을 가진다
+
+### 스위프트의 배열이 다른 언어들의 배열과 다른 점
+
+heavy lifting
+* 스위프트의 배열은 Java처럼 그 크기를 직접 지정할 수도 있지만 하지 않아도 된다
+
+```swift
+struct People {}
+
+let ints = [Int]()
+let strings = [String]()
+let people = [People]()
+
+let arrayOfSpecificSize = Array<Int>(repeating: 1, count: 10)
+```
+* ints, strings, people처럼 배열의 크기를 지정하지 않아도 앞서 설명한 것처럼 동적으로 배열의 크기를 증가시켜준다
+* 자바는 ArrayList같은 컬렉션을 사용해야 이런 동작이 가능하지만 스위프트는 배열에 기본적으로 포함되어 있다
