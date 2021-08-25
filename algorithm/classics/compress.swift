@@ -15,32 +15,23 @@ import UIKit
  */
 
 func compress(_ str: String) -> String {
-    var pointer = 1
-    var pivot = 0
-    let strArray = Array(str)
-    var result = ""
+    var compressed = ""
+    var count = 0
+    let chars = Array(str)
     
-    while pointer < strArray.count {
-        if strArray[pivot] == strArray[pointer] && pointer != strArray.count - 1 {
-            pointer += 1
-        } else {
-            print(pivot, pointer)
-            if pointer - pivot >= 2 {
-                let compressedStr = "\(strArray[pivot])\(pointer - pivot)"
-                result.append(compressedStr)
-                print(result)
-            } else {
-                print(pointer - pivot)
-                for i in pivot...pointer {
-                    result.append(String(strArray[i]))
-                }
-            }
-            pivot = pointer
-            pointer += 1
+    for i in 0..<str.count {
+        count += 1
+        // If we are at the end of our string
+        // or if next char different, append this result
+        if i + 1 >= str.count || chars[i] != chars[i + 1] {
+            compressed.append(chars[i])
+            compressed.append(String(count))
+            count = 0
         }
     }
     
-    return result
+    // Return the original string if shorter, or the compressed if longer
+    return compressed.count < str.count ? compressed : str
 }
 
 compress("aaabb")           // a3b2
