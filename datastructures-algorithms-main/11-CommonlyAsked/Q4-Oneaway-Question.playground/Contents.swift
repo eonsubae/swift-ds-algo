@@ -17,6 +17,10 @@ import UIKit
  */
 
 func oneAway(_ first: String, _ second: String) -> Bool {
+    if abs(first.count - second.count) > 1 {
+        return false
+    }
+        
     return false
 }
 
