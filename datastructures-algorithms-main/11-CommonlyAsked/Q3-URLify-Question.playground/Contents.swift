@@ -14,7 +14,17 @@ import UIKit
  */
 
 func urlify(_ url: String, length: Int) -> String {
-    return ""
+    var result = ""
+    
+    for t in url.trimmingCharacters(in: .whitespaces) {
+        if t == " " {
+            result += "%20"
+        } else {
+            result += String(t)
+        }
+    }
+    
+    return result
 }
 
 urlify("My Home Page    ", length: 16) // "My%20Home%20Page"
