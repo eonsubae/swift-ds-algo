@@ -32,7 +32,7 @@ func isUnique(_ text: String) -> Bool {
         }
     }
     
-    return uniqueCharCount > 0 ? true : false
+    return uniqueCharCount == 1 ? true : false
 }
 
 // 강의자의 풀이
