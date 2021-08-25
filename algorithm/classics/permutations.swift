@@ -10,6 +10,7 @@ import UIKit
  
  */
 
+// 나의 풀이
 func isPermutation(_ text: String, _ perm: String) -> Bool {
     var textCharDic = [Character: Int]()
     var permCharDic = [Character: Int]()
@@ -31,6 +32,15 @@ func isPermutation(_ text: String, _ perm: String) -> Bool {
     }
     
     return textCharDic == permCharDic
+}
+
+// 강의자의 풀이
+func isPermutation2(_ text: String, _ perm: String) -> Bool {
+    if text.count != perm.count {
+      return false
+    }
+
+    return text.sorted() == perm.sorted()
 }
 
 isPermutation("abc", "cba") // true
