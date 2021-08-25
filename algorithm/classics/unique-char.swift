@@ -11,6 +11,7 @@ import UIKit
  
  */
 
+// 나의 풀이
 func isUnique(_ text: String) -> Bool {
     var isUniqueChar: [Character: Bool] = [:]
     
@@ -32,6 +33,20 @@ func isUnique(_ text: String) -> Bool {
     }
     
     return uniqueCharCount > 0 ? true : false
+}
+
+// 강의자의 풀이
+func isUnique2(_ text: String) -> Bool {
+    var foundChars = [Character:Bool]()
+    let chars = Array(text)
+
+    for c in chars {
+        if foundChars[c] != nil { // Already found
+            return false
+        }
+        foundChars[c] = true
+    }
+    return true
 }
 
 isUnique("ab")
