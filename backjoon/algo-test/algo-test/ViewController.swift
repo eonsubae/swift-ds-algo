@@ -5,27 +5,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        print(minimumTime(5, [3, 1, 4, 3, 2])) // 32
+        print(generateParenthesis(2))
     }
     
-    var memo = [Int: Int]()
-
-    func minimumTime(_ n: Int, _ p: [Int]) -> Int {
-        let sortedArray = p.sorted()
-        var result = 0
+    var result = [String]()
         
-        for i in 0..<n {
-            if i == 0 {
-                result += sortedArray[0]
-                memo[0] = sortedArray[0]
-                continue
-            }
-            
-            let spendTime = memo[i - 1]! + sortedArray[i]
-            result += spendTime
-            memo[i] = spendTime
+    func generateParenthesis(_ n: Int) -> [String] {
+        generate("", n, n)
+        return result
+    }
+
+    func generate(_ curr: String, _ l: Int, _ r: Int) {
+        print("curr : \(curr), l : \(l), r : \(r)")
+        if (l < 0 || r < 0) {
+            return
+        }
+        if l == 0 && r == 0 {
+            result.append(curr)
+            return
         }
         
-        return result
+        if (l > 0) {
+            var curr = curr
+            curr += "("
+            generate(curr, l - 1, r)
+        }
+        
+        if (l < r && r > 0) {
+            var curr = curr
+            curr += ")"
+            generate(curr, l, r - 1)
+        }
     }
 }
