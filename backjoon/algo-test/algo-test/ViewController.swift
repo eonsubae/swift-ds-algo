@@ -5,19 +5,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+        print(climbStairs(2)) // 2
+        print(climbStairs(3)) // 3
+        print(climbStairs(4)) // 5
+        print(climbStairs(5)) // 8
     }
     
-    func maxSubArray(_ nums: [Int]) -> Int {
-        var numArray = nums
-        var answer: Int = numArray[0]
+    func climbStairs(_ n: Int) -> Int {
+        var result: [Int] = [0,1,2]
         
-        for i in 1..<numArray.count {
-            numArray[i] = max(numArray[i], numArray[i]+numArray[i - 1])
-            answer = max(answer, numArray[i])
+        if n == 1 || n == 2 { return result[n] }
+        
+        for i in 3...n {
+            result.append(result[i-2]+result[i-1])
         }
         
-        return answer
+        return result[n]
+
     }
-    
 }
