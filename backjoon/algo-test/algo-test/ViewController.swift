@@ -5,22 +5,34 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        print(climbStairs(2)) // 2
-        print(climbStairs(3)) // 3
-        print(climbStairs(4)) // 5
-        print(climbStairs(5)) // 8
+        print(generate(5)) // [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+        print(generate(1)) // [[1]]
     }
     
-    func climbStairs(_ n: Int) -> Int {
-        var result: [Int] = [0,1,2]
+    func generate(_ numRows: Int) -> [[Int]] {
+        var triangle = [[Int]]()
         
-        if n == 1 || n == 2 { return result[n] }
-        
-        for i in 3...n {
-            result.append(result[i-2]+result[i-1])
+        for row in 1...numRows {
+            if row == 1 {
+                triangle.append([1])
+                continue
+            }
+            if row == 2 {
+                triangle.append([1, 1])
+                continue
+            }
+            
+            var newRowValues = [Int](repeating: 1, count: row)
+            let previousRowValues = triangle[row - 2]
+            
+            for i in 1...row-2 {
+                newRowValues[i] = previousRowValues[i-1] + previousRowValues[i]
+            }
+            
+            triangle.append(newRowValues)
         }
         
-        return result[n]
-
+        
+        return triangle
     }
 }
