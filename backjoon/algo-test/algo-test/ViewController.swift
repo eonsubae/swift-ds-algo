@@ -5,28 +5,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        print(maxProfit([7,1,5,3,6,4])) // 5
-        print(maxProfit([7,6,4,3,1])) // 0
+        print(countBits(2)) // [0,1,1]
+        print(countBits(5)) // [0,1,1,2,1,2]
     }
     
-    
-    
-    func maxProfit(_ prices: [Int]) -> Int {
-        if prices.isEmpty {
-            return 0
+    func countBits(_ n: Int) -> [Int] {
+        var result = [Int]()
+        
+        for num in 0...n {
+            let bits = String(num, radix: 2).compactMap { Int(String($0)) }
+            result.append(bits.reduce(0) { $0 + $1 })
         }
         
-        var min = prices[0]
-        var def = 0
-        
-        for price in prices {
-            if price < min {
-                min = price
-            } else if ((price - min) > def) {
-                def = price - min
-            }
-        }
-        
-        return def
+        return result
     }
 }
