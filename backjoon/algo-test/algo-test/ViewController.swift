@@ -5,18 +5,31 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        print(countBits(2)) // [0,1,1]
-        print(countBits(5)) // [0,1,1,2,1,2]
+        print(isSubsequence("abc", "ahbgdc")) // true
+        print(isSubsequence("axc", "ahbgdc")) // false
     }
     
-    func countBits(_ n: Int) -> [Int] {
-        var result = [Int]()
+    func isSubsequence(_ s: String, _ t: String) -> Bool {
+        let tc = Array(t.utf8)
+        let sc = Array(s.utf8)
         
-        for num in 0...n {
-            let bits = String(num, radix: 2).compactMap { Int(String($0)) }
-            result.append(bits.reduce(0) { $0 + $1 })
+        let tccount = tc.count
+        let sccount = sc.count
+        
+        var tcIdx = 0
+        var scIdx = 0
+        
+        while scIdx < sccount && tcIdx < tccount {
+            
+            let sAtIdx = sc[scIdx]
+            let tAtIdx = tc[tcIdx]
+            
+            if sAtIdx == tAtIdx {
+                scIdx += 1
+            }
+            tcIdx += 1
         }
         
-        return result
+        return scIdx == sccount
     }
 }
