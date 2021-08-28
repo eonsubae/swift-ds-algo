@@ -4,32 +4,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        print(isSubsequence("abc", "ahbgdc")) // true
-        print(isSubsequence("axc", "ahbgdc")) // false
+
+        print(minCostClimbingStairs([10,15,20])) // 15
+        print(minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1])) // 6
     }
     
-    func isSubsequence(_ s: String, _ t: String) -> Bool {
-        let tc = Array(t.utf8)
-        let sc = Array(s.utf8)
-        
-        let tccount = tc.count
-        let sccount = sc.count
-        
-        var tcIdx = 0
-        var scIdx = 0
-        
-        while scIdx < sccount && tcIdx < tccount {
-            
-            let sAtIdx = sc[scIdx]
-            let tAtIdx = tc[tcIdx]
-            
-            if sAtIdx == tAtIdx {
-                scIdx += 1
-            }
-            tcIdx += 1
+    
+    func minCostClimbingStairs(_ cost: [Int]) -> Int {
+        var cost = cost
+                
+        for i in 2 ..< cost.count {
+            cost[i] += min(cost[i - 1], cost[i - 2])
         }
         
-        return scIdx == sccount
+        return min(cost[cost.count - 1], cost[cost.count - 2])
     }
 }
